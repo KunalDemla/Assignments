@@ -1,0 +1,301 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<b><h1>ASSIGNMENT#2</h1></b>\n",
+    "<h5>Anamika Srivastava</h5>\n",
+    "<h5>COE5</h5>\n",
+    "<h5>102003103</h5>\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "25\n"
+     ]
+    }
+   ],
+   "source": [
+    "# question 3\n",
+    "\n",
+    "x=int(input(\"Enter the value of x:\"))\n",
+    "y=int(input(\"Enter the value of y:\"))\n",
+    "\n",
+    "sum = (x+y)*(x+y)\n",
+    "\n",
+    "print(sum)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "6\n"
+     ]
+    }
+   ],
+   "source": [
+    "#question 4\n",
+    "\n",
+    "\n",
+    "x=int(input(\"Enter the value of x:\"))\n",
+    "#y=int(input(\"Enter the value of y:\"))\n",
+    "n=x;\n",
+    "sum=0\n",
+    "while n > 0:\n",
+    "    sum = sum + n%10\n",
+    "    n = n//10 \n",
+    "\n",
+    "print(sum)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Not vowel\n"
+     ]
+    }
+   ],
+   "source": [
+    "#question 1\n",
+    "\n",
+    "i1=input(\"Enter first number: \")\n",
+    "\n",
+    "if i1=='a' or i1=='e' or i1=='i' or i1=='o' or i1=='u':\n",
+    "    print(\"Vowel\");\n",
+    "else:\n",
+    "    print(\"Not vowel\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "7\n"
+     ]
+    }
+   ],
+   "source": [
+    "#question 5\n",
+    "\n",
+    "a=input('Enter your string')\n",
+    "\n",
+    "print(len(a))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Your string has become :-  xyc abz\n"
+     ]
+    }
+   ],
+   "source": [
+    "#question 6\n",
+    "\n",
+    "str1 = input(\"First String : \")\n",
+    "str2 =input(\"Second String : \")\n",
+    "\n",
+    "x=str1[0:2]\n",
+    "\n",
+    "str1=str1.replace(str1[0:2],str2[0:2])\n",
+    "\n",
+    "str2=str2.replace(str2[0:2],x)\n",
+    "\n",
+    "print(\"Your string has become :- \",str1,str2)\n",
+    "#print(\"Your second string has become :- \",str2)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Original set elements:\n",
+      "{'White', 'Black', 'Red'}\n",
+      "{'Red', 'Green'}\n",
+      "\n",
+      "Differenct of color_list_1 and color_list_2:\n",
+      "{'White', 'Black'}\n",
+      "\n",
+      "Differenct of color_list_2 and color_list_1:\n",
+      "{'Green'}\n"
+     ]
+    }
+   ],
+   "source": [
+    "#question 2\n",
+    "\n",
+    "l1 = set([\"White\", \"Black\", \"Red\"])\n",
+    "l2 = set([\"Red\", \"Green\"])\n",
+    "print(\"Original set elements:\")\n",
+    "print(l1)\n",
+    "print(l2)\n",
+    "print(\"\\nDifferenct of color_list_1 and color_list_2:\")\n",
+    "print(l1.difference(l2))\n",
+    "print(\"\\nDifferenct of color_list_2 and color_list_1:\")\n",
+    "print(l2.difference(l1))\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "String after removing  4 th character \n",
+      "ThiIsLab\n"
+     ]
+    }
+   ],
+   "source": [
+    "#question 7\n",
+    "\n",
+    "\n",
+    "str = \"ThisIsLab\"\n",
+    " \n",
+    "n=4\n",
+    "\n",
+    "str2 = ''\n",
+    " \n",
+    "\n",
+    "for char in range(0, len(str)):\n",
+    "    if(char != n-1):\n",
+    "        str2 += str[char]\n",
+    " \n",
+    "print(\"String after removing \", n, \"th character \")\n",
+    "print(str2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Upper  ANAMIKA\n",
+      "Lower anamika\n"
+     ]
+    }
+   ],
+   "source": [
+    "#question 8\n",
+    "\n",
+    "str = input(\"Enter string: \")\n",
+    "print(\"Upper\", str.upper())\n",
+    "print(\"Lower\", str.lower())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "anwordamika\n"
+     ]
+    }
+   ],
+   "source": [
+    "#question 9\n",
+    "\n",
+    "str=input('Enter your string: ')\n",
+    "word=input('Enter word')\n",
+    "\n",
+    "print(str[:2] + word + str[2:])\n",
+    "        "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Formatted Number: 3.14\n"
+     ]
+    }
+   ],
+   "source": [
+    "#question 10 \n",
+    "\n",
+    "x = 3.1415926\n",
+    "\n",
+    "print(\"Formatted Number: \"+\"{:.2f}\".format(x));\n"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3.9.6 64-bit",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.6"
+  },
+  "orig_nbformat": 4,
+  "vscode": {
+   "interpreter": {
+    "hash": "8f8cf99212f81ad0c4765861267244807ee1c18364846cdce387b28994a977ba"
+   }
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
