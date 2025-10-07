@@ -19,3 +19,4 @@ We are reviving this project as part of Hacktober 2025.
 * A snail can sleep for 3 years.
 * Wombat poop is cube-shaped.
 * Rainbows can appear at night — they’re called moonbows.
+* The human brain is 60% fat.
