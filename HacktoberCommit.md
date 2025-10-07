@@ -16,3 +16,4 @@ We are reviving this project as part of Hacktober 2025.
 * It's illegal to own just one guinea pig in Switzerland.
 * Bananas are berries, but strawberries aren’t.
 * One day on Venus is longer than its entire year.
+* A snail can sleep for 3 years.
