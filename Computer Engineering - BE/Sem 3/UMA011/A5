@@ -1,0 +1,52 @@
+Gauss-Seidel and SOR
+% A=[10,8,-3,1;2,10,1,-4;3,-4,10,1;2,2,-3,10]
+% B=[16;9;10;11]
+% A=[4.63,-1.21,3.22;-3.07,5.48,2.11;1.26,3.11,4.57]
+% B=[2.22;-3.17;5.11]
+A=[4,1,-1,1;1,4,-1,-1;-1,-1,5,1;1,-1,1,3]
+B=[-2;-1;0;1]
+x0=[0;0;0;0]                    % or x0=[0;0;0]
+x=[0;0;0;0]                     % or x=[0;0;0]
+n=4;                            % or n=3;
+w=1.2                           %given in question 
+tol=0.001
+N=20
+k=1;
+while k<=N
+    for i=1:n
+        
+        sum1=0;
+        for j=1:i-1
+            sum1=sum1+A(i,j)*x(j);
+        end
+        
+        sum2=0;
+        for j=i+1:n
+            sum2=sum2+A(i,j)*x0(j);
+        end
+        
+      %  x(i)=(-sum1-sum2+B(i))/A(i,i);   %Gauss-Seidel
+        x(i)=(1-w)*x0(i)+w*(-sum1-sum2+B(i))/A(i,i);  % SOR
+    end
+    
+    for j=1:n
+        temp(j)=abs(x(j)-x0(j))
+    end
+    if max((abs(temp))<=tol)
+        x
+        break;
+    end
+    
+    x0=x;
+    k=k+1;
+end
+x
+
+Answers:-
+Ques 3: i) x=1.0010, y=0.9997, z=0.9996, u=0.9997      (using Gauss-Seidel)
+               ii) x1=-0.7527, x2=0.0409, x3=-0.2805, x4=0.6914
+
+Ques 3: i) x=1.0012, y=0.9993, z=0.9992, u=0.9995      (using SOR)
+               ii) x1=-0.7540, x2=0.0404, x3=-0.2808, x4=0.6918 
+
+Ques 4: x1=-8.9807, x2=-9.4762, x3=10.0430                 (using Gauss-Seidel)
