@@ -1,0 +1,74 @@
+Assignment 4
+% A = [10,8,-3,1,16;2,10,1,-4,9;3,-4,10,1,10;2,2,-3,10,11]
+A=[10,8,-3,1;2,10,1,-4;3,-4,10,1;2,2,-3,10];
+B=[16;9;10;11];
+x=[0,0,0,0];
+n=4; %col %row
+m=zeros(n,n);
+ 
+%pivoting here
+
+for i=1:n-1
+    for j=i+1:n
+        m(j,i)=A(j,i)/A(i,i)  %multiplier
+        A(j,:)=A(j,:)-m(j,i)*A(i,:)  %operation
+    end
+end
+ 
+if(A(n,n)==0)
+    display("No unique solution")
+end
+display(A)
+ 
+%Gauss elimination
+% x(n)=A(n,n+1)/A(n,n)
+% for i=n-1:-1:1
+%     sum=0
+%     for j=i+1:n
+%         sum=sum+(A(i,j)*x(j))
+%     end
+%         
+%     x(i)=(A(i,n+1)-sum)/A(i,i);
+% end
+% display(x)
+ 
+%LU decomposition
+U=A;
+L=zeros(n,n);
+for i=1:n
+     L(i,i)=1;
+    for j=i+1:n
+       L(j,i)=m(j,i);
+    end
+end
+Y=inv(L)*B;     %Ax=B => (LU)x=B => Ly=B and Ux=y
+o=inv(U)*Y; 
+display(o)
+
+
+
+
+
+
+
+
+Answers:
+(by gauss elimination and LU decomposition both)
+Q3:  x=1, y=1, z=1, u=1 
+Q4:  x1=1.349448558207068, x2=-4.677987751108764,
+        x3=-4.032893778689475, x4= -1.656637733316910
+Q5: i1=0.67850, i2=0.42150, i3=0.25701, i4=0.15421, i5=0.10280
+
+
+PIVOTING
+
+for i=1:n-1
+    for j=i+1:n
+        if(A(i,i)<=A(i,j))
+            temp=A(i,:);
+            A(i,:)=A(j,:);
+            A(j,:)=temp;
+        end
+    end
+end
+
