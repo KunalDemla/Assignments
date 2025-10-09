@@ -1,0 +1,161 @@
+Assignment UCS311
+Q:1 Write a program to create your own linux shell in C. Paste snapshots after writing code to demonstrate the working (Atleast 5 different commands of your choice). The pwd in snapshot must reflect your name and roll number. (5)
+Screenshots
+ 
+
+
+
+
+
+
+
+
+Code
+
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+#define PRMTSIZ 255
+#define MAXARGS 63
+#define EXITCMD "exit"
+
+int main(void)
+ {
+    for (;;) {
+        char input[PRMTSIZ + 1] = { 0x0 };
+        char *ptr = input;
+        char *args[MAXARGS + 1] = { NULL };
+        int wstatus;
+        printf("%s ", getuid() == 0 ? "#" : "$");
+        fgets(input, PRMTSIZ, stdin);
+        if (*ptr == '\n') continue;
+        for (int i = 0; i < sizeof(args) && *ptr; ptr++) {
+            if (*ptr == ' ') continue;
+            if (*ptr == '\n') break;
+            for (args[i++] = ptr; *ptr && *ptr != ' ' && *ptr != '\n'; ptr++);
+            *ptr = '\0';
+        }
+                                                                            // fork child
+        if (strcmp(EXITCMD, args[0]) == 0) 
+                 return 0;
+        signal(SIGINT, SIG_DFL);
+        if (fork() == 0) exit(execvp(args[0], args));
+        signal(SIGINT, SIG_IGN);
+
+        // wait for exit status
+        wait(&wstatus);
+        if (WIFEXITED(wstatus)) printf("<%d>", WEXITSTATUS(wstatus));
+    }
+}
+
+
+¬
+Q:2 Write a program in C with multiple functions, one of which causes the program to crash. Investigate the usage of the ‘bt’, ‘up , ‘info frame’ ‘down’ commands provided by gdb. Attach relevant snapshots to show the usage of commands. (5)
+Screenshots
+a) crash
+ 
+
+b) backtrace
+The backtrace shows one line per frame for many frames and gives a summary of how the program has run so far.
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+c) up
+The up command is used to go one frame up (as default).
+ 
+
+d) info frame
+The info frame command will display the information about the current frame selected by the frame command (as default).
+ 
+
+e) down
+The down command will go one frame down (as default).
+ 
+
+Code
+#include <stdio.h>
+int fact(int n)
+{
+ int f=1;
+ if(n==1)
+ return 1;
+ else
+ f=n*fact(n-1);
+ return f;
+}
+
+int main()
+{
+ int num, f;
+ printf("Enter the number ");
+ scanf("%d", &num);
+ f=fact(num);
+ //int result; result = num/0;
+ printf("Factorial is %d", f);
+ return 0;
+}
+
+ Q:3 Write a program using system programming for files. Do the following: 
+1. Create a file with permission 666. 
+2. Open the file in write mode and write your name, roll number, subgroup, branch in the file. 
+3. Open the file for reading and display the contents of file on screen. 
+4. Use only symbolic constants to set file permissions. 
+5. Attach snapshots to demonstrate file created, data written on file through console, data displayed on monitor. (5)
+
+Screenshots
+
+ 
+
+ 
+
+ 
+
+
+
+
+
+Code
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<fcntl.h>
+#include<sys/stat.h>
+#include<string.h>
+
+int main()
+{
+    int fd, wr, ar;
+    char info[100], disp[100];
+
+    //to open file
+    fd = open("question3.txt", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH);
+
+    printf("Enter your name, roll no., subgroup and branch\n");
+    gets(info);
+    wr = write(fd, info, strlen(info));
+    close(fd);
+    system("clear");
+    printf("File created!\n");
+
+    //displaying info
+    printf("Displaying information\n\nName     Roll No.   Subgroup  Branch\n");
+    ar = open("question3.txt", O_RDONLY,0);
+    write(1, disp, read(ar, disp, 100));
+    printf("\n");
+    close(ar);
+}
+
+
+
+
+
