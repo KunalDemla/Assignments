@@ -1,0 +1,107 @@
+Lab Assignment–5  
+ 
+1.	Create table emp which has the following attributes (employee table) 
+(@empno, ename, job, sal, deptno) 
+Where empno is primary key, ename is unique, job in (Prof, 
+AP, and Lect), sal is not NULL, and deptno is foreign key 
+ 
+ 
+2.	Create table dept which has the following attributes (department table) 
+(@deptno, dname) 
+Where deptno is primary key, dname in (Acc, comp, elect) 
+ 
+ 
+3.	Create table S which has the following attributes (Salesperson table) 
+(@sno, sname, city) 
+Where sno is primary key 
+ 
+ 
+4.	Create table P which has the following attributes (Part table) 
+(@pno, pname, color) 
+Where pno is primary key 
+ 
+ 
+5.	Create table J which has the following attributes (ProJect table) 
+(@jno, jname, city) 
+Where jno is primary key 
+ 
+ 
+6.	Create table SPJ which has the following attributes 
+(@ (sno, pno, jno), qty) 
+Where combination of (sno, pno, jno) is primary key, also sno, pno, jno are foreign keys 
+ 
+7.	Insert appropriate records in above tables. 
+ 
+
+ANSWERS:
+1.	create table dept(
+ deptno number PRIMARY KEY,
+ dname varchar(20) UNIQUE);
+
+
+2.	create table emp(
+ empno number primary key,
+ ename varchar(20) unique,
+job varchar(20),
+sal number not null,
+deptno number  references dept(deptno));
+
+
+3.	create table S(
+sname varchar(20),
+sno number primary key,
+scity varchar(20));
+
+4.	create table P(
+pname varchar(20),
+pno number primary key,
+color varchar(20));
+
+
+5.	create table J(
+jname varchar(20),
+jno number primary key,
+city varchar(20));
+
+
+
+6.	create table spj(
+sno number references S(sno),
+pno number references P(pno),
+jno number references J(jno),
+primary key(sno, pno, jno)
+);
+
+
+ 	 
+Lab Assignment–6 
+ 
+Q1) Check the structure of tables. 
+ 
+Q2) Check the constraint name for applied constraints? 
+ 
+Q3) Drop the unique constraint on ENAME 
+ 
+Q4) Drop the Foreign Key constraint on DEPTNO 
+ 
+Q5) Add Foreign Key constraint on DEPTNO 
+ 
+Q6) Change Data type of ENAME 
+ 
+Q7) Change width of DNAME 
+ 
+Q8) Add COMM column in EMP table 
+ 
+Q9) Drop CITY column from J table 
+ 
+Q10) Create duplicate copy of EMP table 
+ 
+Q11) Copy structure of DEPT table in another table with   different column names 
+ 
+Q12) Change the name and job of the employee whose EMPNO =100  
+Q13) Delete the record of employee who belong to computer department 
+ 
+Q14) Drop DEPT Table 
+ 
+Q15) Drop duplicate table of EMP table 
+ 
