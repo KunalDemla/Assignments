@@ -1,0 +1,84 @@
+Assignment 2
+
+Q1.
+#to make my chest, basically the sample space
+chest <- c(rep("gold", 20), rep("silver",30), rep("bronze",50))
+
+# a) now drawing from the chest    
+event <- sample(x=chest, size=10)
+print(event)
+
+# b) failure, success for next 10 processes
+print(sample(c("success", "failure"),10,replace=T,prob=(c(0.9,0.1))))
+
+Q2. 
+# a) having same birthday
+k = 2  # number of people in room
+p <- numeric(k)  
+for (i in 1:k)      {
+  q <- 1 - (0:(i - 1))/365  
+  p[i] <- 1 - prod(q)  }
+prob <- p[k]
+print(prob)
+
+# b)
+M=365
+for (j in 1:M){
+  k = j  
+  p <- numeric(k)  
+  for (i in 1:k)      {
+    q <- 1 - (0:(i - 1))/365  
+    p[i] <- 1 - prod(q)  }
+  prob <- p[k]
+  
+  if(prob>0.5){
+    break
+  }
+}
+print(prob)
+print(k)
+
+
+Q3. 
+BayesTheorem = function(P_A, P_B, P_BA) {
+  P_AB = P_A * P_BA / P_B
+  return(P_AB)
+}
+cloudy = 0.40
+rain = 0.20
+cloudy_rain = 0.85
+
+print(BayesTheorem(cloudy, rain, cloudy_rain))
+
+
+
+Q4.
+library(datasets)
+print(head(iris)) # first few rows
+print(str(iris)) #structure
+print(iris$Sepal.Length) #Range
+print(mean(iris$Sepal.Length)) #mean
+print(median(iris$Sepal.Length)) #median
+q=c(quantile(iris$Sepal.Length))#quartiles
+print(q[1])
+print(q[3])
+print(IQR(iris$Sepal.Length)) #interquartile range
+print(sd(iris$Sepal.Length)) #std dev
+print(var(iris$Sepal.Length)) #variance
+print(summary(iris)) #summary
+
+ 
+ 
+
+
+Q5.
+getmode <- function(v) {
+   uniqv <- unique(v)
+   uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+v <- c(2,1,2,3,1,2,3,4,1,5,5,3,2,3)
+result <- getmode(v)
+print(result)
+
+
+
