@@ -1,0 +1,184 @@
+PLSQL (LAB Assignments-1) 
+1)	WAP to find the greatest of three numbers.  
+2)	WAP to check whether number is odd or even.  
+3)	WAP to find the grade. Consider the following: 
+ Marks > 80 A grade 
+ Marks >70 B grade 
+ Marks >50 C grade  
+Marks > 40 D grade  
+Marks < 40 E grade 
+4)	WAP to print the table of a given number.(use for loop) 
+5)	WAP to find out the factorial of a given number.(use while loop)  6) WAP to find out the Fibonacci series. 7) WAP to find the reverse of a number  
+8)	Write PL/SQL block that performs addition (+), subtraction (-), multiplication (*) and division (/) of two numbers as choice by the user. 
+9)	Write PL/SQL block to print 5, 10, 15,20 by using For Loop. 
+10)	Write Pl/SQL block to display welcome message like good morning, good afternoon, good night depending on system time. 
+ 
+ANSWERS:
+
+1.	
+declare 
+ a number := 2;
+ b number := 3;
+ c number := 5;
+begin
+ dbms_output.put_line('Given 3 numbers: ' || a || ',' || b || ',' ||c);
+ if a>b and a>c then
+ dbms_output.put_line('Max number: ' || a);
+ elsif b>a and b>c then
+ dbms_output.put_line('Max number: ' || b); 
+ elsif c>a and c>b then
+ dbms_output.put_line('Max number: ' || c);
+ end if;
+end;  
+
+
+2.
+declare 
+ a number := 2;
+ b number := 3;
+ 
+begin
+ dbms_output.put_line('Given 3 numbers: ' || a || ',' || b );
+ if mod(a,2)=0 then
+ dbms_output.put_line(a || ' is even number');
+ else
+ dbms_output.put_line(a || ' is odd number');
+ end if;
+ 
+ if mod(b,2)=0 then
+ dbms_output.put_line(b || ' is even number');
+ else
+ dbms_output.put_line(b || ' is odd number');
+ end if;
+ 
+end;
+
+3.
+declare 
+ a number := 75;
+ 
+begin
+
+ if a>80 then
+ dbms_output.put_line('A Grade');
+ elsif a>70 then
+ dbms_output.put_line('B Grade');
+ elsif a>50 then
+ dbms_output.put_line('C Grade');
+ elsif a>40 then
+ dbms_output.put_line('D Grade');
+ else
+ dbms_output.put_line('E Grade');
+ end if;
+ 
+end;
+
+ 
+
+
+
+4. 
+declare 
+ a number := 7;
+ i number(1);
+ 
+begin
+ dbms_output.put_line('Table of the given number');
+ for i in 0..10 loop
+ dbms_output.put_line(a||' x '|| i ||' = '||a*i);
+ end loop;
+end;
+
+
+5. 
+declare 
+ num number := 5;
+ i number := 1;
+ fact number :=1 ;
+ 
+begin
+ while i<=num loop
+    fact:=fact*i;
+ i:=i+1 ;
+ end loop;
+ dbms_output.put_line('Factorial Number: ' ||num|| ' is '|| fact);
+
+end;
+ 
+
+6.
+declare 
+ num1 number := 0;
+ num2 number := 1;
+ num3 number := 0;
+ x number := 9;
+ i number;
+ 
+begin
+ dbms_output.put_line('Fibonacci Series upto ' || x||' terms');
+ if x>=1 then
+ dbms_output.put_line(num1);
+ end if;
+ if x>=2 then
+ dbms_output.put_line(num2);
+ end if;
+ for i in 3..x loop
+ num3:= num1 + num2;
+ dbms_output.put_line(num3);
+ num1:=num2;
+ num2:=num3;
+ end loop;
+end;
+
+
+7.
+declare 
+ num number := 123;
+ digit number;
+ rev number := 0;
+ 
+begin
+ dbms_output.put_line('Given number: ' || num);
+ loop 
+ exit when num<=0;
+ digit:= mod(num,10);
+ rev:=rev*10+digit;
+ num:=floor(num/10);
+ end loop;
+ dbms_output.put_line('Reverse of given number: '||rev);
+end;
+ 
+
+8.
+declare 
+ str varchar2(20):= 'Anamika';
+ rev_str varchar2(20);
+ temp varchar2(20);
+ i number;
+ len number;
+ 
+begin
+ dbms_output.put_line('Given string: ' || str);
+ len:=length(str);
+ for i in 1..len loop
+    temp:= substr(str, -i,1);
+    rev_str:=concat(rev_str, temp);
+ end loop;
+ dbms_output.put_line('Reverse of given string: '||rev_str);
+end; 
+
+9.
+declare 
+ a number := 7;
+ i number(1);
+ 
+begin
+ dbms_output.put_line('Table of the given number');
+ for i in 0..10 loop
+ dbms_output.put_line(a||' x '|| i ||' = '||a*i);
+ end loop;
+end;
+
+
+10.
+
