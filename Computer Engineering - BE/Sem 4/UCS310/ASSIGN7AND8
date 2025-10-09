@@ -1,0 +1,183 @@
+A Sample Database for assignment 7 & 8 
+(RDBMS APP: Order Entry System) 
+Table 1:  SalesPeople 
+Snum is Primary key  
+Sname is Unique constraint  
+ 
+Table 2: Customers 
+Cnum is Primary Key  
+City has not null constraint . 
+Snum is foreign key constraint refers  Snum column of SalesPeople table. 
+ 
+
+
+Table 3: Orders 
+Onum is Primary key  
+Cnum is foreign key  refers to Cnum column of Customers table. 
+Snum is foreign key refers  Snum column of SalesPeople table. 
+ 
+ 
+
+
+
+
+
+
+
+ 
+ 
+Assignment  7 
+ 
+1)	Count the number of Salesperson whose name begin with ‘a’/’A’. 
+ 
+2)	Display all the Salesperson whose all orders worth is more than Rs. 2000. 
+ 
+3)	Count the number of Salesperson belonging to Newyork. 
+ 
+4)	Display the number of Salespeople belonging to Landon and belonging to Paris. 
+ 
+5)	Display the number of orders taken by each Salesperson and their date of orders. 
+ 
+6)	Write a query that counts the number of Salespeople registering orders for each day. 
+ 
+7)	Write a query that selects the first customer in alphabetical order , whose name begins with ‘G’. 
+ 
+8)	Find out the largest orders for Snum 1002 & 1007. 
+ 
+9)	Find out the maximum single order amount of a Salesperson over Rs. 3000 in a day. 
+ 
+10)	Find out the no. of Salesperson who belongs to same city and have same commission percentage. 
+ 
+
+
+
+
+ANSWERS: 
+
+Table SalesPeople:
+create table SalesPeople(
+snum number(5) constraint pk_sp primary key,
+sname varchar(15) constraint u_sp unique,
+city varchar(20),
+comm number(5,2)
+);
+
+insert into SalesPeople values (1001, 'Peel', 'London', 0.12);
+insert into SalesPeople values (1002, 'Serres', 'Sanjose', 0.13);
+insert into SalesPeople values (1004, 'Motika', 'Landon', 0.11);
+insert into SalesPeople values (1007, 'Rifkin', 'Barcelona', 0.15);
+insert into SalesPeople values (1003, 'Axelrod', 'Newyork', 0.10);
+select * from SalesPeople;
+ 
+
+
+Table Customers:
+
+create table Customers(
+cnum number(5) constraint pk_c primary key,
+cname varchar(15),
+city varchar(20) NOT NULL,
+snum number(5),
+constraint fk_c foreign key (snum) references SalesPeople(snum)
+);
+
+
+insert into Customers values (2001, 'Hoffman', 'London', 1001);
+insert into Customers values (2002, 'Giovanni', 'Rome', 1003);
+insert into Customers values (2003, 'Liu', 'Sanjose', 1002);
+insert into Customers values (2004, 'Grass', 'Berlin', 1002);
+insert into Customers values (2006, 'Clemens', 'London', 1001);
+insert into Customers values (2008, 'Cisneros', 'Sanjose', 1007);
+insert into Customers values (2007, 'Pereira', 'Rome', 1004);
+
+select * from Customers;
+ 
+
+Table Orders:
+create table Orders(
+onum number(5) constraint pk_o primary key,
+amt number(7,2),
+odate date,
+cnum number(5),
+constraint fk_oc foreign key (cnum) references Customers(cnum),
+snum number(5),
+constraint fk_os foreign key (snum) references SalesPeople(snum)
+);
+
+
+insert into Orders values (3001, 18.69, to_date('3-OCT-1990', 'DDSP-MON-YYYY'), 2008, 1007);
+insert into Orders values (3003, 767.19, to_date('3-OCT-1990', 'DDSP-MON-YYYY'), 2001, 1001);
+insert into Orders values (3002, 1900.10, to_date('3-OCT-1990', 'DDSP-MON-YYYY'), 2007, 1004);
+insert into Orders values (3005, 5160.45, to_date('3-OCT-1990', 'DDSP-MON-YYYY'), 2003, 1002);
+insert into Orders values (3006, 1098.16, to_date('3-OCT-1990', 'DDSP-MON-YYYY'), 2008, 1007);
+insert into Orders values (3009, 1713.23, to_date('4-OCT-1990', 'DDSP-MON-YYYY'), 2002, 1003);
+insert into Orders values (3007, 75.75, to_date('4-OCT-1990', 'DDSP-MON-YYYY'), 2004, 1002);
+insert into Orders values (3008, 4273.00, to_date('5-OCT-1990', 'DDSP-MON-YYYY'), 2006, 1001);
+insert into Orders values (3010, 1309.95, to_date('6-OCT-1990', 'DDSP-MON-YYYY'), 2004, 1002);
+insert into Orders values (3011, 9891.88, to_date('6-OCT-1990', 'DDSP-MON-YYYY'), 2006, 1001);
+
+select * from Orders;
+ 
+1. select count(*) as COUNT from SalesPeople group by sname having lower(sname) like 'a%';
+2. select * from SalesPeople where snum in (Select snum from Orders group by snum having sum(amt)>2000);
+3. select count(*) as "SalesPeople from NEWYORK" from SalesPeople where lower(city)='newyork';
+4. select city, count(*) from SalesPeople group by city having lower(city) in ('paris', 'london');
+5. select snum, count(onum) from Orders group by snum order by snum;
+6. select odate, count(distinct snum) from Orders group by odate;
+7. select * from (select cname from Customers where lower(cname) like 'g%' order by cname) where rownum<2;
+8. select snum, max(amt) from Orders where snum=1002 or snum=1007 group by snum;
+9. select snum, odate, max(amt) from Orders where amt>=3000 group by (snum,odate);
+10. select count(*) from Salespeople m, SalesPeople n where m.city=n.city and m.comm=n.comm and m.sname!=n.sname;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Assignment-8 
+ 
+1-Find those salesperson name who live in any one of the city of customers 
+(do it both with sub-query and join) 
+2-Find those salesperson name,customers name who belong to any one of the cty of customers 
+(do it both with sub-query and join) 
+3-Find those salesperson name who belong to the city of their customer 
+(do it both with sub-query and join) 
+4-Find those salesperson name who belong to the city of their customer 
+(do it with co-related sub-query) 
+5-Find those salesperson name,customer name where salesperson is assigned/not assigned to any customer 
+6-Find those customer name who is not assigned to any salesperson 
+7-Find the highest order of each salesperson 
+8-Find the names of salesperson and their highest order 
+9-Find those orders of salesperson which is more than his average orders 
+ 10-List those salesperson who has more than two customers. 
+(use all 3 methods) 
+
+ANSWERS
+1.	select sname from Salespeople where city in (select city from Customers);
+       select distinct sname from Salespeople s, Customers c where s.city = c.city;
+2.	select sname, cname from Salespeople s, Customers c where c.city = s.city
+[Can not be solved using Sub Query]
+3.	select distinct sname from Salespeople s, Customers c where s.city = c.city and s.snum = c.snum
+select sname from Salespeople where (snum, city) in (select snum, city from Customers);
+4.	select sname from Salespeople s where exists (select * from Customers c where c.snum=s.snum and s.city=c.city);
+5.	select sname, cname from Salespeople s left join customers c on s.snum=c.snum;
+6.	select cname from customers where snum is null
+7.	select snum, max(amt) from orders group by snum
+8.	select s.sname, o.amount from Salespeople s inner join (select snum, max(amt) as amount from orders group by snum) o on s.snum=o.snum
+9.	select onum, snum, amt from orders where amt > (select avg(amt) from orders)
+10.	select sname from salespeople s, customers c where c.snum=s.snum group by sname having count(c.snum)>2;
+select * from salespeople where snum in (select snum from customers group by snum having count(snum)>2)
+select * from salespeople s where 2 < (select count(c.snum) from customers c where c.snum=s.snum);
+
+                
+
+       
