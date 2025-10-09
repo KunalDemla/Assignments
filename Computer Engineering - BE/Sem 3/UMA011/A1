@@ -1,0 +1,53 @@
+Bisection Method
+% Lab Assign 1 
+ 
+clear all
+clc
+ 
+syms r
+% f=@(x) x^2-29;
+% f=@(x) x^3+4*x^2-10
+f=@(r) (8.775468*10^(-8)*(log(r)^3)) + (2.341077*10^(-4)*log(r)) + (1.129241*10^(-3) - 1/(292.14))
+ 
+ tol = 0.001; %tolerance
+ a=12000;
+ b=14000;
+% h=1;
+% n1 = -10; %-N
+% n2 = 10;  %N
+% 
+% for i = n1:h:n2   %IVT
+%     if(f(i)*f(i+h)<0)
+%         a=i;
+%         b=i+h;
+%         break;  %required for smallest possible root
+%     end
+% end
+% 
+% disp("The interval is ");
+% disp(a);
+% disp(b);
+% a=1;
+% b=2;
+ 
+count = 0;  % number of iterations
+while(abs(a-b)>tol)
+    c=(a+b)/2;
+    if(f(a)*f(c)<0)
+        b=c;
+    else
+        a=c;
+    end
+    count = count + 1;
+end
+ 
+% disp("The number of iterations is ");
+% disp(count)
+disp("The answer is ");
+disp(c)
+ 
+
+ 
+% Ans 1 = -5.3857                 (Ques 3 i )
+% Ans 2 = 1.3643, iterations = 10 (Ques 3 ii)
+% Ans 3 = 1.3078e+04              (Ques 4)
