@@ -1,0 +1,37 @@
+PL/SQL Lab Assignment-2 
+1. Write a PL/SQL program to demonstrate following exceptions: 
+•	Too Many Rows 
+•	No Data Found 
+2.	Write a PL/SQL code to display a message to check whether the record is deleted or not. 
+3.	Write a PL/SQL code to display a message to provide the information about the number of records deleted by the delete statement issued in a PL/SQL block. 
+Cursor 
+EMP (empno, ename, job, sal, deptno) 
+4.	Write a PL/SQL code to demonstrate %TYPE and %ROWTYPE to display details of employees in EMP table.  
+5.	Write a PL/SQL code to display the empno, ename, job of employees of department number 10 for EMP table (using Cursor). 
+6.	Write a PL/SQL code to display the employee number and name of top 5 highest paid Employees (using Cursor).  
+7.	Write a PL/SQL code to calculate the total salary of first n records of emp table. The value of n is passed to cursor as parameter 
+
+ANSWERS
+1.	
+create table student (
+rn number(2),
+marks number(3));
+
+select * from student;
+
+create or replace procedure exception_handling as
+x student%rowtype;
+begin
+select rn, marks into x from student;
+dbms_output.put_line('Roll Nummber: '|| x.rn||'     Marks Obtained: '|| x.marks);
+
+exception
+when too_many_rows then
+dbms_output.put_line('The number of rows fetched are too many');
+when no_data_found then
+dbms_output.put_line('No input has been made yet.');
+end;
+
+exec exception_handling;
+
+ 
