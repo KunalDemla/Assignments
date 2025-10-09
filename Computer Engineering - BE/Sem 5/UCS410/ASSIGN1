@@ -1,0 +1,76 @@
+Q1.
+num = c(5,10,15,20,25) 
+print(num)
+print(paste("Max value:", max(num)))
+print(paste("Max value:", min(num)))
+
+Q2. 
+num = as.integer(readline(prompt="Enter number:"))
+fac=1
+if(num<0){
+  print("Number is -ve!")
+}else if(num==0){
+  print("Factorial = 1")
+}else{
+  for(i in 1:num){
+    fac=fac*i
+  }
+  print(paste("Factorial is: ", fac))
+}
+
+Q3.
+num = as.integer(readline(prompt="Enter number:"))
+a=0
+b=1
+print(a)
+print(b)
+for(i in 3:num){
+  fib=a+b
+  print(fib)
+  a=b
+  b=fib
+} 
+
+
+
+
+
+
+
+Q4.
+num1 = as.integer(readline(prompt="Enter number1:"))
+num2 = as.integer(readline(prompt="Enter number2:"))
+add=num1+num2
+sub=num1-num2
+mul=num1*num2
+div=num1/num2
+print(paste("Addition: ",add)) 
+print(paste("Subtraction: ",sub))
+print(paste("Multiplication: ",mul))
+print(paste("Division: ",div))
+
+
+Q5.
+
+#piechart
+x = c(21, 62, 10, 53)
+labels = c("London", "New York", "Singapore", "Mumbai")
+
+# Plot the chart.
+pie(x,labels) 
+
+
+#plot
+x=c(1,2,3,4,5)
+y=c(5,10,15,20,25)
+plot(x,y)
+
+
+#barplot
+x = c("A", "B", "C", "D")
+y = c(2, 4, 6, 8)
+H=1:100
+barplot(y, names.arg = x, col = "yellow")
+barplot(H,col=rainbow(length(H))) 
+#col = rainbow(length(y)) gives rainbow colours till
+#length of y
