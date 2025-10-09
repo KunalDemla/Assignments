@@ -1,0 +1,158 @@
+Lab Assignment–1 
+ 
+1.	Create table Student (Rno, Name, DOB, Gender, Class, College, City, Marks)  
+2.	Insert 5 records in student table 
+3.	Display the information of all the students 
+4.	Display the detail structure of student table 
+5.	Display Rno, Name and Class information of ‘Patiala’ students. 
+6.	Display information on ascending order of marks 
+7.	Change the marks of Rno 5 to 89. 
+8.	Change the name and city of Rno 9. 
+9.	Delete the information of ‘Amritsar’ city records 
+10.	Delete the records of student where marks<30. 
+
+
+ANSWERS:
+1.
+create table s1 (
+Rno         int, 
+SName   varchar(30), 
+DOB       date, 
+Gender  varchar(8), 
+SClass    varchar(8), 
+College  varchar(20), 
+City        varchar(10), 
+Marks    int);
+
+2.
+insert into s1
+values(01,'Rohit',TO_DATE('01/02/1980','DD/MM/YYYY'),'Male','COE5','Thapar','Patiala’, 65);
+insert into s1
+values(05, 'Ram', TO_DATE('03/12/1980', 'DD/MM/YYYY'), 'Male', 'CS4', 'IIITD', 'Delhi', 45);
+insert into s1
+values(03, 'Geeta', TO_DATE('11/05/1980', 'DD/MM/YYYY'), 'Female', 'CI8', 'Amritsar College', 'Amritsar', 46);
+insert into s1
+values(04, 'Veena', TO_DATE('24/09/1980', 'DD/MM/YYYY'), 'Female', 'ME6', 'NIT', 'Jaipur', 68);
+insert into s1
+values(09, 'Lata', TO_DATE('13/10/1980', 'DD/MM/YYYY'), 'Female', 'CO5', 'TIET', 'Patiala', 25);
+
+3. select * from s1;
+4. desc s1;
+5. select Rno, Sname, SClass from s1 where City=’Patiala’;
+6. select * from s1 order by Marks asc;
+7. update s1 set Marks=89 where Rno=05;
+8. update s1 set SName='Bina', City='Chennai' where Rno=09;
+9. delete from s1 where City like 'Amritsar'; or City=’Amritsar’
+10. delete from s1 where Marks<30;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+Lab Assignment-2 
+1.	Create table emp which has the following attributes (employee table) (empno, ename, job, sal, deptno) 
+2.	Insert appropriate records in above tables. 
+3.	Get employee no and employee name who works in dept no 10  
+4.	Display the employee names of those clerks whose salary > 2000  
+5.	Display name and sal of Salesperson & Clerks  
+6.	Display all details of employees whose salary between 2000 and 3000  
+7.	Display all details of employees whose dept no is 10, 20, or 30  
+8.	Display name of those employees whose commission is NULL 
+9.	Display dept no & salary in ascending order of dept no and with in each dept no salary should be in descending order
+10.	Display name of employees that starts with ‘C’ 
+11.	Display name of employees that ends with with ‘C’ 
+12.	Display name of employees having two ‘a’ or ‘A’ chars in the name  
+13.	Display the name of the employees whose second char is ‘b’ or ‘B’  
+14.	Display the name of the employees whose first or last char is ‘a’ or ‘A’ 
+
+ANSWERS:
+1. create table emp(  
+  empno    int,  
+  ename    varchar(10),  
+  job          varchar(10),  
+  sal           number(7,2), 
+  deptno   int  );
+
+2. 
+insert into emp values( 7839, 'Rohit', 'Manager', 1000, 10)  ;
+insert into emp values( 7840, 'Priya', 'President', 4000, 20)  ;
+insert into emp values( 7823, 'Shyam', 'Assistant', 5000, 30)  ;
+insert into emp values( 7339, 'Anita', 'Manager', 1000, 10)  ;
+insert into emp values( 7271, 'Manish', 'Clerk', 4000, 40)  ;
+insert into emp values( 7548, 'Gitika', 'Analyst', 1200, 50)  ;
+insert into emp values( 7182, 'Nandini', 'Salesman', 1500, 60)  ;
+insert into emp values( 7833, 'Karnika', 'Analyst', 1200, 50)  ;
+insert into emp values( 7327, 'Sona', 'Manager', 2000, 10)  ;
+insert into emp values( 7289, 'Tia', 'Clerk', 1000, 20)  ;
+insert into emp values( 7282, 'Sia', 'Assistant', 3000, 30)  ;
+insert into emp values( 7317, 'Naman', 'Manager', 2000, 10)  ;
+insert into emp values( 7393, 'Garima', 'Clerk', 1000, 40)  ;
+insert into emp values( 7292, 'Keerthana', 'Analyst', 1000, 50)  ;
+insert into emp values( 7221, 'Harsh', 'Salesman', 2000, 60)  ;
+insert into emp values( 7383, 'Ram', 'Analyst', 2000, 50)  ;
+3. select empno, ename from emp where deptno = 10; 
+
+4. select ename from emp where sal > 2000; 
+ 
+ 5. select ename, sal from emp where job IN ('Salesman', 'Clerk');
+ 
+ 6. select * from emp where sal > 2000 and sal < 3000;
+ 
+ 7. select * from emp where deptno in (10,20,30)
+ 
+ 8. select ename from emp where sal is NULL
+ 
+ 9. select deptno, sal from emp order by deptno asc, sal desc
+ 
+10. select ename from emp where ename like 'C%'
+ 
+11. select ename from emp where ename like '%C'
+ 
+12. select ename from emp where ename like '%a%a%' or ename like '%A%A%*
+ 
+13. select ename from emp where ename like '_b%' or ename like '_B%'; 
+ 
+14. select ename from emp 
+ where ename like 'a%a' or ename like 'a%A' 
+ or ename like 'A%a' or ename like 'A%A';
+
+
