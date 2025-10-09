@@ -1,0 +1,178 @@
+Assignment 3
+Write queries to: 
+1.	Display the system date 
+2.	Display current day 
+3.	Display current month and spell out year 
+4.	Display spell out current date 
+5.	Check whether it is AM or PM right now 
+6.	Display the date of next Friday 
+7.	Round the system date on month 
+8.	Truncate the system date on month 
+9.	Round the system date on year 
+10.	Truncate the system date on year 11. Find the day after three days 
+Queries Based on EMP table 
+12.	Display day of date of joining column 
+13.	Display those employees who join the company on Monday 
+14.	Display those employees who join the company this month 
+15.	Display those employees who join the company in last 30 days 
+Create a table train having three four columns 
+16.	Train Number, date of Departure, time of departure, time of arrival 
+17.	Insert five columns in train table 
+18.	Display all the records 
+19.	Display the time values inserted in the columns 
+20.	Display those trains which arrived on PM 
+21.	Display train number who are going to depart in next on hour. 
+
+ANSWERS:
+
+1. select sysdate from dual;
+2. select to_char(sysdate, 'day') from dual;
+3. select to_char(sysdate, 'mon year') from dual;
+4. select to_char(sysdate, 'ddspth') from dual;
+5. select to_char(sysdate, ‘PM’) from dual;
+6. select lower(next_day(sysdate, 'friday')) from dual;
+7. select round (to_date(sysdate),'MON') from dual;
+8. select trunc(to_date(sysdate),'MON') from dual;	
+9. select round(to_date(sysdate),'year') from dual;
+10. select trunc(to_date(sysdate),'year') from dual;
+11. select to_char(sysdate+3, 'day') from dual;
+
+12. select ename, to_char(hiredate, 'day') as day_of_hire from emp;
+13. select ename from emp where to_char(hiredate, 'fmday') = 'monday';
+14. select ename from emp where to_char(hiredate, 'mon') = to_char(sysdate, 'mon');
+15. select ename from emp where hiredate > sysdate-30 and hiredate <sysdate;
+ 
+Lab Assignment–4 
+ 
+ 
+Q1) Use the following functions → 
+ 
+1.	chr (n): 
+ 
+2.	cancat(char1,char2): 
+ 
+3.	instr(string,char): 
+ 
+4.	length(n): 
+ 
+5.	lpad(char1 ,n [,char2]): 
+ 
+6.	ltrim(string [,char(s)]): 
+ 
+7.	rpad(char1 ,n [,char2]): 
+ 
+8.	rtrim(string [,char(s)]): 
+ 
+9.	replace(char ,search_string , replacement_string): 
+ 
+10.	substr(string ,position ,substring length): 
+ 
+11.	initcap(char): 
+ 
+12.	lower(string): 
+ 
+13.	upper(string): 
+ 
+14.	translate(char ,from string ,to string): 
+ 
+15.	abs(n): 
+ 
+16.	ceil(n): 
+ 
+17.	cos(n): 
+ 
+18.	exp(n): 
+ 
+19.	floor(n): 
+ 
+20.	mod(m ,n): 
+ 
+21.	power(x ,y): 
+ 
+22.	round(x [,y]): 
+ 
+23.	sign(n): 
+ 
+24.	sqrt(n); 
+ 
+25.	trunc(x ,n): 
+ 
+26.	sysdate: 
+ 
+27.	add_months(d ,n): 
+ 
+28.	last_day(): 
+ 
+29.	months_between(date1 ,date2): 
+ 
+30.	next_day(date ,char): 
+ 
+31.	greatest(expr): 
+ 
+32.	least(expr): 
+ 
+Q2) Display current time in hour : min : sec format 
+ 
+Q3) Display salary + commission of emp table 
+ 
+Q4) Store any date value in hiredate column of table ? 
+ 
+Q5) Display name of employee(s) who join the company in 1985 ? 
+ 
+Q6) Display name of the employee(s) who join the company this year ? 
+ 
+
+ANSWERS:
+
+1. select chr (97) from dual;  
+2. select concat('a','b') from dual;
+3. select instr('anamika','n') from dual; //tells position of the 2nd string
+4. select length('anamika') from dual;
+5. select lpad('class', 10, '*') from dual;
+6. select ltrim('class','c') from dual;  //removes the char (if present) from extreme left
+7. select rpad('class', 10, '*') from dual;
+8. select rtrim('class','s') from dual;
+9. select replace('goose' ,'o', 'e') from dual;
+10. select substr('anamika', 2, 4) from dual; //takes from 2-4 in the given string
+11. select initcap('a') from dual; //first letter capson
+12. select lower('Anamika') from dual;
+13. select upper('Anamika') from dual;
+14. select translate('goose' ,'o' ,'e') from dual;
+15. select abs(-11) from dual;
+16. select ceil(4.9) from dual;
+17. select cos(1.5708) from dual;
+18. select exp(1) from dual;
+19. select floor(1.5) from dual;
+20. select mod(18,4) from dual; //quotient
+21. select power(2,4) from dual;
+22. select round(1.23) from dual;
+23. select sign(1.23) from dual;
+24. select sqrt(2) from dual;
+25. select trunc(1.23, 1) from dual;  //truncates to 1 decimal place
+26. select sysdate from dual;
+27. select add_months('01-FEB-2022',2) from dual;
+28. select last_day(SYSDATE) from dual;
+29. select months_between('01-FEB-2022', '01-MAR-2022') from dual; 
+30. select next_day('21-FEB-2022','Tuesday') from dual; 
+31. select greatest(30,22,34) from dual; 
+32. select least(30,22,34) from dual;
+33. select to_char(sysdate, 'hh:mm:ss') from dual;
+
+create table emp (
+empno number,
+ename varchar(50), 
+job varchar(100), 
+deptno number, 
+sal number,
+commission number,
+hiredate date);
+
+insert into emp values(1, 'A', 'Sales', 4, 100000,100,TO_DATE('01/01/2020', 'DD/MM/YYYY') );
+insert into emp values(2, 'B', 'Accounts', 2, 200000,200,TO_DATE('01/01/2020', 'DD/MM/YYYY') );
+insert into emp values(3, 'C', 'Sales', 10, 50000,500,TO_DATE('01/01/2020', 'DD/MM/YYYY') );
+
+
+34. select sal+commission from emp;
+35. select hiredate from emp;
+36. SELECT ename FROM emp WHERE hiredate<TO_DATE('01/01/1986', 'DD/MM/YYYY') and hiredate>=TO_DATE('01/01/1985', 'DD/MM/YYYY');
+37. SELECT ename FROM emp WHERE hiredate<TO_DATE('01/01/2023', 'DD/MM/YYYY') and hiredate>=TO_DATE('01/01/2022', 'DD/MM/YYYY');
