@@ -1,0 +1,43 @@
+Assignment 3
+
+Q1.
+print(pbinom(9,12,1/6)-pbinom(6,12,1/6))
+
+Q2. 
+print(pnorm(84, mean=72, sd=15.2, lower.tail =FALSE) )  
+                                                                                                      
+
+
+Q3. 
+a)	print(dpois(0, 5, log=FALSE) )
+b)	print(dpois(48, 50, log=FALSE) + dpois(49, 50, log=FALSE) + dpois(50, 50, log=FALSE))
+
+
+
+Q4.
+print(dhyper(3, 17, 233, 5)) 
+                                                                                          
+
+
+Q5.
+a.	print(dbinom(17, 31, 0.447)) 
+
+
+
+b.	
+
+
+
+
+
+                                                             
+c.	                       
+
+
+
+d.	library(distrEx)
+X = Binom(size = 31, prob = 0.447)
+print(E(X))
+print(var(X))    
+print(sd(X))
+
