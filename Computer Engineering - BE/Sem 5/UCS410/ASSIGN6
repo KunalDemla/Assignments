@@ -1,0 +1,68 @@
+Assignment 6
+
+Q1.
+#a
+library(pracma)
+f = function(x,y) 2*(2*x+3*y)/5
+I=integral2(f,xmin=0,xmax=1,ymin=0,ymax=1)
+print(I$Q)
+#b
+gx_1=function(y) f(1,y) 
+gx1=integral(gx_1,0,1) 
+print(gx1) 
+#c
+hy_0=function(x) f(x,0) 
+hy0=integral(hy_0,0,1) 
+print(hy0) 
+#d
+f_xy=function (x,y) f(x,y)*x*y 
+E_xy=integral2(f_xy,0,1,0,1) 
+print(E_xy$Q)
+Q2. 
+#a
+f=function(x,y) (x+y)/30 
+x=c(0:3) 
+y=c(0:2) 
+M1=matrix(c(f(0,0:2),f(1,0:2),f(2,0:2),f(3,0:2)), nrow=4,,ncol=3,byrow=TRUE)
+print(M1)
+
+#b
+print(sum(M1))
+ 
+#c
+gx=apply(M1,1,sum) print(gx)
+
+#d
+hy=apply(M1,2,sum)
+print(hy)
+
+#e
+print(M1[1,2])
+print(hy[2])
+p_x0_y1=M1[1,2]/hy[2]
+print(p_x0_y1)
+
+#f
+E_x=sum(x*gx)
+print(E_x)
+E_x2=sum(x*x*gx) 
+print(E_x2)
+var_x=E_x2-E_x*E_x 
+print(var_x)
+E_y=sum(y*hy)
+print(E_y)
+E_y2=sum(y*y*hy) 
+print(E_y2) 
+var_y=E_y2-E_y*E_y 
+print(var_y)
+x=c(0:3) 
+y=c(0:2)
+f1=function(x,y) x*y*(x+y)/30
+M2=matrix(c(f1(0,0:2),f1(1,0:2),f1(2,0:2),f1(3,0:2)), nrow=4,,ncol=3,byrow=TRUE) 
+print(M2)
+E_xy=sum(M2)
+print(E_xy)
+cov_xy=E_xy-E_x*E_y
+print(cov_xy)
+r_xy=cov_xy/sqrt(var_x*var_y)
+print(r_xy)
