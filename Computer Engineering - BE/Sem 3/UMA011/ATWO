@@ -1,0 +1,100 @@
+Newton’s Method
+clear all
+clc
+ 
+syms t
+% f=@(x) x^2-17;
+% f=@(x) exp(-x)*(x^2+5*x+2)+1
+% f=@(x) x-2*sin(x)
+f=@(t) 9*exp(-t)*sin(2*pi*t)-3.5
+ 
+ 
+% dff=diff(f,x);  % f = func name, x = independent variable
+dff=diff(f,t);
+df = inline(dff) % now dff will be treated as a func
+% x0=4;
+% x0=-1;
+% x0=-2
+x0=0.05
+tol = 0.00001;
+i=1;
+N=20;
+flag=-1
+ 
+while(i<=N)
+    x1 = x0 - (f(x0)/df(x0));
+    
+    if(abs(x1-x0)<tol)
+        disp("Root is :");
+        disp(x1);
+        flag = 1;
+        break;
+    
+    else
+        i=i+1;
+        x0=x1;
+    end
+end
+ 
+if(flag==-1)
+    disp("Root not found!");
+end
+
+
+
+% Answers:
+% 
+% Ques 3a) 4.1231
+% Ques 3b) -0.5792
+% Ques 3c) -1.8955
+% Ques 4)  0.0684
+
+Secant Method
+clear all
+clc
+ 
+syms x
+% f=@(x) x^2-17;
+% f=@(x) exp(-x)*(x^2+5*x+2)+1
+f=@(x) x-2*sin(x)
+ 
+ 
+ 
+tol = 0.00001;
+i=1;
+N=20;
+flag=-1
+h=1;
+n1 = -10; %-N
+n2 = 10;  %N
+ 
+for i = n1:h:n2   %IVT
+    if(f(i)*f(i+h)<0)
+        x0=i;
+        x1=i+h;
+        break;  %required for smallest possible root; remove it for a positive root
+    end
+end
+ 
+i=1
+while(i<=N)
+    x2 = x1 - ((x1-x0)/(f(x1)-f(x0)))*f(x1);
+    
+    if(abs(x2-x1)<tol)
+        disp("Root is :");
+        disp(x2);
+        flag = 1;
+        break;
+    
+    else
+        i=i+1;
+        x0=x1;
+        x1=x2;
+    end
+end
+ 
+if(flag==-1)
+    disp("Root not found!");
+end
+
+
