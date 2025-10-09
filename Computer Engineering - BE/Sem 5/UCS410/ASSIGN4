@@ -1,0 +1,55 @@
+Assignment 4
+
+Q1.
+wt <- c(0,1,2,3,4)
+x <- c(0.41,0.37,0.16,0.05,0.01) 
+s <- sum(wt)
+ans <- weighted.mean(c(wt%*%x),s)
+print(ans)
+
+Q2. 
+integrand <- function(t) {0.1*exp(-0.1*t)}
+i <-integrate(integrand, lower = 0, upper = Inf)
+print(i)                                                                                                     
+
+Q3. 
+x=c(0,1,2,3)
+p=c(0.1,0.2,0.2,0.5)
+s=sum(x)
+m <- weighted.mean(x%*%p, s)
+f <- function(k) {(12*k)+(2*(3-k))-(3*6)}
+print(f(m)) 
+
+Q4.
+x <- c(2,3,4,5,6,7,8,9)
+#first moment
+i <- function(t) {(t-0)*(0.5*exp(-1*abs(t)))}
+a=integrate(i,-Inf,Inf)
+print(a)
+#second moment
+i <- function(t) {((t-0)**2)*(0.5*exp(-1*abs(t)))}
+a=integrate(i,-Inf,Inf)
+print(a)                                                                                         
+
+Q5. # probability of y=x^2 at x=3
+f<-function(x){
+  (3/4)*((1/4)^(x-1))
+}
+x<-as.integer(readline("Enter the value of x: "))
+y=x^2
+proby<-f(y)
+print(proby)
+# probability distribution of Y for X=1,2,3,4,5
+x<-c(1,2,3,4,5)
+y<-x^2
+proby<-f(y)
+print(proby)
+# expected value of y i.e. mean(y) using sum() or weighted.mean()
+expval<-sum(y*proby)
+print(expval)
+# variance=E(y^2)-E(y)^2
+z<-y^2
+ey2<-sum(y*proby)
+var<-ey2-(expval)^2
+print(var)
+
